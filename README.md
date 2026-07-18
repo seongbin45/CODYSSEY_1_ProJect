@@ -260,9 +260,10 @@
 
 1. **Streamlit 앱** (`bot/app.py`)
    - 시스템 프롬프트·Few-shot을 코드와 분리해 로드
-   - Provider: Google Gemini(무료 키 권장) / OpenAI 호환(Grok 등)
-   - 로컬: `pip install -r bot/requirements.txt` → `streamlit run bot/app.py`
-   - 클라우드: Streamlit Community Cloud, Main file = `bot/app.py`, Secrets에 `GEMINI_API_KEY`
+   - Provider: **Groq(무료 권장)** / OpenRouter(무료) / **OpenAI ChatGPT** / Gemini / 직접 입력
+   - **자동 Fallback:** Groq → OpenRouter → OpenAI → Gemini (키가 있는 것만 시도; Gemini 실패 시 다음 키로 전환)
+   - 로컬: `py -3 -m pip install -r requirements.txt` → `py -3 -m streamlit run bot/app.py`
+   - 클라우드: Main file = `bot/app.py`, Secrets에 `GROQ_API_KEY` (또는 `OPENAI_API_KEY` 등)
 
 2. **Custom GPT / 커스텀 인스트럭션**
    - `deploy/custom_gpt_instructions.md` Instructions 본문을 GPT에 등록

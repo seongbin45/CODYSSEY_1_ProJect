@@ -10,11 +10,16 @@
 | # | 항목 | 상태 |
 |---|------|------|
 | 0-1 | GitHub 계정 로그인 가능 | [ ] |
-| 0-2 | [Google AI Studio](https://aistudio.google.com/apikey)에서 **Gemini API 키** 발급 | [ ] |
+| 0-2 | **무료 권장:** [Groq](https://console.groq.com) API 키 발급 (Gemini 대체 1순위) | [ ] |
+| 0-2b | (선택) [OpenRouter](https://openrouter.ai) 키 · (선택) [OpenAI](https://platform.openai.com/api-keys) 키 | [ ] |
+| 0-2c | (선택) Gemini 키 — 없어도 Fallback으로 동작 | [ ] |
 | 0-3 | 로컬에 시크릿 파일 없음 확인 (`.streamlit/secrets.toml` 이 git에 안 들어감) | [ ] |
 | 0-4 | 저장소에 `requirements.txt`(루트) + `bot/app.py` 존재 | [ ] |
 
 API 키는 **절대** README·커밋·채팅에 붙여 넣지 마세요. Streamlit **Secrets**에만 넣습니다.
+
+**Gemini가 안 될 때:** 앱 기본 모드는 **자동 Fallback** — Groq → OpenRouter → OpenAI → Gemini 순으로
+키가 있는 제공자만 시도합니다. Groq 키만 있어도 배포·제출에 충분합니다.
 
 ---
 
@@ -103,10 +108,20 @@ gh repo create CODYSSEY_1_ProJect --public --source=. --remote=origin --push
 | Main file path | `bot/app.py` |
 | App URL (선택) | 예: `confirm-bot` → `https://confirm-bot.streamlit.app` |
 
-5. **Advanced settings** → **Secrets** 에 아래 붙여넣기:
+5. **Advanced settings** → **Secrets** 에 아래 중 **하나 이상** 붙여넣기 (무료 권장: Groq):
 
 ```toml
-GEMINI_API_KEY = "여기에_발급받은_키"
+# 무료 1순위
+GROQ_API_KEY = "gsk_여기에_Groq_키"
+
+# 선택 — 무료 모델
+# OPENROUTER_API_KEY = "sk-or-..."
+
+# 선택 — ChatGPT API
+# OPENAI_API_KEY = "sk-..."
+
+# 선택 — Gemini (실패해도 Fallback이 처리)
+# GEMINI_API_KEY = "..."
 ```
 
 6. **Deploy** 클릭 → 빌드 로그에서 `pip install` 완료·앱 기동 확인
@@ -115,7 +130,7 @@ GEMINI_API_KEY = "여기에_발급받은_키"
 |---|------|------|
 | 3-1 | share.streamlit.io GitHub 연동 | [ ] |
 | 3-2 | Main file = `bot/app.py` | [ ] |
-| 3-3 | Secrets에 `GEMINI_API_KEY` 등록 | [ ] |
+| 3-3 | Secrets에 `GROQ_API_KEY` (또는 다른 키) 등록 | [ ] |
 | 3-4 | Deploy 성공, 공개 URL 발급 | [ ] |
 
 ---
@@ -131,8 +146,8 @@ GEMINI_API_KEY = "여기에_발급받은_키"
 | 4-3 | 배경+모르는 것 입력 | 제목+본문, 번호 목록 질문 | [ ] |
 | 4-4 | `카톡 톤으로` | 확인사항 유지, 톤만 변경 | [ ] |
 
-사이드바 Provider는 **Google Gemini**, 모델 `gemini-2.0-flash` 권장.
-Secrets에 키가 있으면 API Key 칸이 채워진 상태로 보입니다.
+사이드바 호출 모드는 **자동 Fallback (권장)** 유지.
+직전 사용 제공자(예: Groq / llama-3.3-70b)가 사이드바에 표시되면 정상입니다.
 
 ---
 
@@ -165,8 +180,10 @@ Streamlit Cloud는 `main` push 시 **자동 재배포**됩니다.
 | 증상 | 원인 / 조치 |
 |------|-------------|
 | `ModuleNotFoundError` | 루트 `requirements.txt` 확인 후 **Reboot app** |
-| `API Key가 없습니다` | Cloud Secrets 키 이름 `GEMINI_API_KEY` 확인 |
-| `generate_content` / 권한 오류 | AI Studio에서 키 재발급, Gemini API 사용 설정 확인 |
+| `등록된 API 키가 없습니다` | Secrets에 `GROQ_API_KEY` 등 등록 후 Reboot |
+| Gemini 지역/쿼터 오류 | 정상 — Fallback이 Groq/OpenRouter로 전환. Groq 키 확인 |
+| OpenAI 결제/한도 오류 | `OPENAI_API_KEY` 결제 상태 확인, 또는 Groq만 사용 |
+| OpenRouter 모델 없음 | 모델명 끝에 `:free` 확인 |
 | GitHub private repo 연동 실패 | Streamlit에 repo 권한 재부여 또는 **Public** 전환 |
 | Windows `python` 오류 (로컬만) | `py -3 -m streamlit run bot/app.py` 사용 |
 | Push 인증 실패 | GitHub → Settings → Developer settings → PAT (repo 권한) 발급 후 비밀번호 대신 사용 |
