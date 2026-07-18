@@ -1,4 +1,10 @@
 
+# 확인봇 링크:
+
+~~~
+https://codyssey1project-veykurgs7vjgikjaw3kczh.streamlit.app/
+~~~
+
 ---
 
 # GenAI 기초 1: LLM 기반 업무 자동화 — 프롬프트 패키지
