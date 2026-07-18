@@ -6,7 +6,7 @@ def run_reboot_macro():
     # 💡 자동화하고 싶은 앱들의 식별 키워드 리스트입니다.
     # 제공해주신 HTML 소스에 적힌 실제 앱 이름들을 바탕으로 구성했습니다.
     target_apps = [
-        "codyssey_1_project ∙ main ∙ bot/app.py"
+        "codyssey_1_project"
     ]
 
     with sync_playwright() as p:
