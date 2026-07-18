@@ -1,6 +1,6 @@
 ---
 
-# 확인봇 링크:
+# 🤖 확인봇 링크:
 
 ~~~
 https://codyssey1project-veykurgs7vjgikjaw3kczh.streamlit.app/
