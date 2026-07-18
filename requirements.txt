@@ -1,0 +1,4 @@
+# Streamlit Community Cloud는 저장소 루트의 requirements.txt를 사용합니다.
+streamlit>=1.32.0
+openai>=1.40.0
+google-genai>=1.0.0

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>확인봇 프롬프트 패키지</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --card: #1a2332;
+      --text: #e7ecf3;
+      --muted: #9aa8bc;
+      --accent: #3d8bfd;
+      --border: #2a3a4f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem;
+    }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    .badge {
+      display: inline-block;
+      background: #1e3a5f;
+      color: #9ec5ff;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    p.lead { color: var(--muted); margin-top: 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+    }
+    .card h2 { margin: 0 0 0.75rem; font-size: 1.1rem; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    ul { padding-left: 1.2rem; color: var(--muted); }
+    code {
+      background: #0d1218;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    footer {
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="badge">보너스 1 · 재사용 배포 패키지</span>
+    <h1>✉️ 확인봇 프롬프트 패키지</h1>
+    <p class="lead">
+      창업지원 실무 이메일 작성 코치 — 시스템 프롬프트, Few-shot, 입력 템플릿을
+      파일 단위로 공유합니다. Firebase Hosting 등으로 정적 배포할 때 쓰는 랜딩 페이지입니다.
+    </p>
+
+    <div class="card">
+      <h2>다운로드 / 원본 파일</h2>
+      <ul>
+        <li><a href="./system_prompt.md">system_prompt.md</a> — 시스템 프롬프트 v2</li>
+        <li><a href="./input_template.md">input_template.md</a> — 입력 템플릿</li>
+        <li><a href="./few_shot.json">few_shot.json</a> — Few-shot 3건</li>
+        <li><a href="./package_index.json">package_index.json</a> — 패키지 인덱스 (재사용 메타데이터)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>어떻게 쓰나요?</h2>
+      <ul>
+        <li><strong>Custom GPT</strong>: Instructions에 <code>system_prompt.md</code> 내용을 붙여넣기</li>
+        <li><strong>Streamlit</strong>: 저장소에서 <code>streamlit run bot/app.py</code></li>
+        <li><strong>직접 사용</strong>: 입력 템플릿을 채운 뒤 아무 LLM에 시스템 프롬프트와 함께 전달</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>핵심 규칙 (한 줄 요약)</h2>
+      <ul>
+        <li>모호하면 되묻기 · 없는 수치/정책 단정 금지</li>
+        <li>순서 질문은 “지금 무엇부터?”까지</li>
+        <li>확인사항 최대 3개 · 톤/채널 변경 시 내용 유지</li>
+      </ul>
+    </div>
+
+    <footer>
+      GenAI 기초 1 · 보너스 1 배포 산출물 · 확인봇
+    </footer>
+  </main>
+</body>
+</html>

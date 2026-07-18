@@ -1,0 +1,39 @@
+{
+  "name": "확인봇",
+  "version": "2.0.0",
+  "description": "창업지원 실무 이메일 작성 코치 — 재사용 프롬프트 패키지",
+  "task": "정책/절차 확인 실무 이메일 초안 작성",
+  "persona": {
+    "name": "확인봇",
+    "role": "창업지원 실무 이메일 작성 코치",
+    "priority": "정확성 > 신속함"
+  },
+  "files": {
+    "system_prompt": "system_prompt.md",
+    "few_shot": "few_shot.json",
+    "input_template": "input_template.md"
+  },
+  "output_spec": {
+    "format": "제목 1줄 + 본문",
+    "length_ko_chars": "250-350",
+    "confirm_items_max": 3
+  },
+  "safety": [
+    "배경에 없는 금액·날짜·정책 추정 금지",
+    "모호 입력 시 되묻기",
+    "정보 상충 시 임의 단정 금지",
+    "순서 질문은 실행 가능한 다음 행동까지"
+  ],
+  "deployment": {
+    "streamlit_entry": "bot/app.py",
+    "custom_gpt_instructions": "deploy/custom_gpt_instructions.md",
+    "firebase_public": "deploy/firebase/public"
+  },
+  "reproducibility_fields": [
+    "model",
+    "provider",
+    "temperature",
+    "date",
+    "channel"
+  ]
+}
