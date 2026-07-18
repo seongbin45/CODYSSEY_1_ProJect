@@ -1,0 +1,49 @@
+name: Daily Streamlit Auto Reboot
+
+on:
+  schedule:
+    - cron: '0 15 * * *'  # 매일 한국 시간(KST) 자정(오전 0시)에 자동으로 실행 (UTC 기준 15:00)
+    - cron: '17 23 * * *'                 # KST 매일 오전 8:17 (UTC 23:17)
+    - cron: '37 3,10,12,13 * * *'         # KST 매일 오후 12:37, 7:37, 9:37, 10:37 (UTC 03:37, 10:37, 12:37, 13:37)
+  workflow_dispatch:      # 깃허브 웹사이트에서 내가 원할 때 수동으로 실행할 수 있는 버튼 활성화
+
+jobs:
+  reboot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. 저장소 코드 가져오기
+        uses: actions/checkout@v4
+
+      - name: 2. 파이썬 및 플레이라이트 세팅
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      - name: 3. 필수 패키지 설치
+        run: |
+          pip install playwright
+          playwright install chromium
+
+      - name: 4. auth.json 파일 생성 (비밀 환경 변수 사용)
+        env:
+          AUTH_JSON_DATA: ${{ secrets.AUTH_JSON_DATA }}
+        run: |
+          echo "$AUTH_JSON_DATA" > auth.json
+
+      - name: 5. 수동 Reboot 버튼 클릭 매크로 가동
+        run: |
+          python streamlit_reboot_macro/app_reboot_macro.py
+
+      - name: 6. 재부팅 트리거 파일 업데이트 (현재 시간 기록)
+        run: |
+          echo "Last reboot: $(date)" > streamlit_reboot_macro/reboot_trigger.txt
+
+      - name: 7. 변경사항을 깃허브에 반영(Push)하기
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add streamlit_reboot_macro/reboot_trigger.txt
+          git commit -m "🤖 매일 자동 재부팅 트리거 (reboot_trigger.txt 업데이트)" || echo "변경 사항 없음"
+          git push
+
+
