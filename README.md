@@ -276,10 +276,12 @@
 
 | 항목 | 값 |
 |------|-----|
-| Streamlit URL | _(Community Cloud 배포 후 기입)_ |
+| GitHub 저장소 | https://github.com/seongbin45/CODYSSEY_1_ProJect |
+| Streamlit URL | _(아래 Streamlit Cloud 체크리스트 완료 후 기입)_ |
 | Custom GPT 링크 | _(공유 링크 기입 또는 "커스텀 인스트럭션 적용")_ |
 | Firebase URL | _(firebase deploy 후 기입)_ |
-| 로컬 재현 | `streamlit run bot/app.py` |
+| 로컬 재현 | `py -3 -m streamlit run bot/app.py` |
+| 배포 체크리스트 | `deploy/STREAMLIT_CLOUD_CHECKLIST.md` |
 
 > 보너스 1 충족 기준: 최종 프롬프트가 **한 번 설정하면 반복 사용** 가능한 형태(GPT Instructions / 앱 / 호스팅 패키지)로 분리·배포되어 있음.
 
