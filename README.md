@@ -1,6 +1,6 @@
 ---
 
-# 🤖 확인봇 링크:
+# 🤖 확인봇 링크를 주소창에 붙여넣어주세요 :)
 
 ~~~
 https://codyssey1project-veykurgs7vjgikjaw3kczh.streamlit.app/
