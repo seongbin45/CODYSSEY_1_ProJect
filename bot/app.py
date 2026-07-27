@@ -428,12 +428,10 @@ with st.sidebar:
             "GROQ_API_KEY",
             value=resolve_api_key(PROVIDERS["groq"]),
             type="password",
-            key="key_groq",
         )
         model_overrides["groq"] = st.text_input(
             "Groq 모델",
             value=PROVIDERS["groq"].default_model,
-            key="model_groq",
         )
 
     with st.expander("OpenRouter (무료 모델)", expanded=(primary_id == "openrouter")):
@@ -442,12 +440,10 @@ with st.sidebar:
             "OPENROUTER_API_KEY",
             value=resolve_api_key(PROVIDERS["openrouter"]),
             type="password",
-            key="key_or",
         )
         model_overrides["openrouter"] = st.text_input(
             "OpenRouter 모델",
             value=PROVIDERS["openrouter"].default_model,
-            key="model_or",
             help="무료 모델은 이름 끝에 :free",
         )
 
@@ -457,12 +453,10 @@ with st.sidebar:
             "OPENAI_API_KEY",
             value=resolve_api_key(PROVIDERS["openai"]),
             type="password",
-            key="key_oai",
         )
         model_overrides["openai"] = st.text_input(
             "OpenAI 모델",
             value=PROVIDERS["openai"].default_model,
-            key="model_oai",
             help="gpt-4o-mini / gpt-4o / gpt-4.1-mini 등",
         )
 
@@ -472,12 +466,10 @@ with st.sidebar:
             "GEMINI_API_KEY",
             value=resolve_api_key(PROVIDERS["gemini"]),
             type="password",
-            key="key_gem",
         )
         model_overrides["gemini"] = st.text_input(
             "Gemini 모델",
-            value=PROVIDERS["gemini"].default_model,
-            key="model_gem",
+            value=PROVIDERS["gemini"].default_model
         )
 
     custom_base_url = None
@@ -487,7 +479,6 @@ with st.sidebar:
             "API Key",
             value=resolve_api_key(PROVIDERS["custom"]),
             type="password",
-            key="key_custom",
         )
         custom_base_url = st.text_input(
             "Base URL",
