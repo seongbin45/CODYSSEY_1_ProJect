@@ -417,7 +417,7 @@ with st.sidebar:
         st.caption(f"{badge} {p.label} · {free}")
 
     st.divider()
-    st.subheader("키 / 모델 (수동 입력 가능)")
+    st.subheader("모델 (수동 입력 가능)")
 
     manual_keys: dict[str, str] = {}
     model_overrides: dict[str, str] = {}
