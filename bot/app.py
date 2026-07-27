@@ -425,7 +425,6 @@ with st.sidebar:
     with st.expander("Groq (무료 권장)", expanded=(primary_id in ("auto", "groq"))):
         st.caption(PROVIDERS["groq"].free_note)
         manual_keys["groq"] = st.text_input(
-            "GROQ_API_KEY",
             value=resolve_api_key(PROVIDERS["groq"]),
             type="password",
         )
@@ -437,7 +436,6 @@ with st.sidebar:
     with st.expander("OpenRouter (무료 모델)", expanded=(primary_id == "openrouter")):
         st.caption(PROVIDERS["openrouter"].free_note)
         manual_keys["openrouter"] = st.text_input(
-            "OPENROUTER_API_KEY",
             value=resolve_api_key(PROVIDERS["openrouter"]),
             type="password",
         )
@@ -450,7 +448,6 @@ with st.sidebar:
     with st.expander("OpenAI ChatGPT", expanded=(primary_id == "openai")):
         st.caption(PROVIDERS["openai"].free_note)
         manual_keys["openai"] = st.text_input(
-            "OPENAI_API_KEY",
             value=resolve_api_key(PROVIDERS["openai"]),
             type="password",
         )
@@ -463,7 +460,6 @@ with st.sidebar:
     with st.expander("Google Gemini", expanded=(primary_id == "gemini")):
         st.caption(PROVIDERS["gemini"].free_note)
         manual_keys["gemini"] = st.text_input(
-            "GEMINI_API_KEY",
             value=resolve_api_key(PROVIDERS["gemini"]),
             type="password",
         )
@@ -476,7 +472,6 @@ with st.sidebar:
     with st.expander("직접 입력 (OpenAI 호환)", expanded=(primary_id == "custom")):
         st.caption(PROVIDERS["custom"].free_note)
         manual_keys["custom"] = st.text_input(
-            "API Key",
             value=resolve_api_key(PROVIDERS["custom"]),
             type="password",
         )
